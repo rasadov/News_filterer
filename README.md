@@ -1,6 +1,6 @@
 ## News filterer
 
-This program gathers articles from news websites and filters them to given criteria.
+This program gathers articles from news website and filters them to given criteria.
 
 ## Installation
 
