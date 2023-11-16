@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import pdb
 
 criteria = int(input("Enter the minimum amount of votes: "))
 
