@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Web Scrapper</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="{{ url_for('main_page') }}"><h1 style="margin: 0 0 0 0;">Web Scrapper</h1></a>
+    </nav>
+
+    <div class="content">
+            <h1>Welcome to the Web Scrapper</h1>
+    </div>
+    <a href="{{ url_for('hacker_news_page') }}" class="source">
+    <section class="source">
+            <div style="height: 10px;"></div>
+            <div class="source">
+                <h1 class="source">Hacker News</h1>
+                <p class="source">Filter articles from Hacker News by the amount of votes</p>
+            </div>
+        </section>
+    </a>
+</body>

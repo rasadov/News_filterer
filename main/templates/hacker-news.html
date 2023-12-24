@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    News
+{% endblock %}
+
+
+{% block content %}
+<form method="POST">
+
+    <!-- <textarea name="description" class="form-control" rows="5" placeholder="Description"></textarea> -->
+</form>
+
+{% for i in items %}
+<p> {{i}} </p>
+{% endfor %}
+
+{% endblock %}
