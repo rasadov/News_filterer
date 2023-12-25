@@ -5,10 +5,23 @@
 
 
 {% block content %}
-<form method="POST">
-
-    <!-- <textarea name="description" class="form-control" rows="5" placeholder="Description"></textarea> -->
-</form>
+<div style="margin: 0 auto 0 auto; text-align: center; display: inline;">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div style="height: 20px;"></div>
+        <div>
+            <label for="minimum" style="font-size: 30px; ">Minimum points:</label>
+            <br>
+            <input type="number" class="filter-input" id="minimum" name="minimum" placeholder="Minimum">
+        </div>
+        <div>
+            <label for="maximum" style="font-size: 30px; ">Maximum points:</label>
+            <br>
+            <input type="number" id="maximum" class="filter-input" name="maximum" placeholder="Maximum">
+        </div>
+            <button type="submit" style="width: 220px; height: 30px; background: rgb(127, 255, 138); margin-top: 20px;">Search</button>
+    </form>
+</div>
 
 {% for i in items %}
 <p> {{i}} </p>

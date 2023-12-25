@@ -11,8 +11,6 @@ nav {
     text-align: center;
 }
 
-
-
 nav a {
     color: white;
     padding: 10px;
@@ -61,4 +59,24 @@ p.source {
 
 .content {
     padding: 20px;
+}
+
+
+.btn-success {
+    height: 60px;
+    width: 200px;
+    background: rgb(89, 255, 89);
+    border-color:rgb(0, 159, 24);
+    border-width: 5px;
+}
+
+.form-input {
+    height: 30px;
+    width: 240px;
+}
+
+.filter-input {
+    margin: 20px auto 20px auto;
+    width: 200px;
+    height: 30px;
 }

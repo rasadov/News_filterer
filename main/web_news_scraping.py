@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-criteria = int(input("Enter the minimum amount of votes: "))
+# criteria = int(input("Enter the minimum amount of votes: "))
 
 URl = 'https://news.ycombinator.com/?p='
 # website we are going to grab data from
@@ -18,37 +18,31 @@ def get_link(tr):
     # returns a link in athing class
 
 
-def filter_points(span, min_points):
-    if points(span) > min_points:
+def filter_points(span, min_points, max_points):
+    points_of_span = points(span)
+    if points_of_span > min_points and points_of_span < max_points:
         return True
     # returns True if amount of points more than minimum
 
 
 # filtered by the amount of points
-for i in range(1, 4):
-    res = requests.get(URl + str(i))
-    soup = BeautifulSoup(res.text, 'html.parser')
-    # getting access to website
+def get_news(min_points, max_points):
+    articles = []
+    for i in range(1, 5):
+        res = requests.get(URl + str(i))
+        soup = BeautifulSoup(res.text, 'html.parser')
+        # getting access to website
 
-    links = soup.select('.athing')
-    votes = soup.select('.score')
+        links = soup.select('.athing')
+        votes = soup.select('.score')
 
-    # grabbing data which will be needed for filtration
+        # grabbing data which will be needed for filtration
 
-    ids = {}
-    for i in votes:
-        if filter_points(i, criteria):
-            ids[(i.get('id')[6:])] = points(i)
-        # selecting articles with points more than 150
+        ids = {}
+        for i in votes:
+            if filter_points(i, min_points, max_points):
+                ids[(i.get('id')[6:])] = points(i)
+            # selecting articles with points more than 150
 
-    articles = [f'{i.text} --- has {ids[i.get("id")]} votes: {get_link(i)}' for i in links if i.get('id') in ids]
-    for i in articles:
-        print(i)
-    # for i in links:
-        # if i.get('id') in ids:
-            # print(f'{i.text} --- has {ids[i.get("id")]} votes: ', get_link(i))
-        # prints article of selected previously ids
-
-
-# if __name__ == '__main__':
-#     pdb.run('exit')
+        articles += ([f'{i.text} --- has {ids[i.get("id")]} votes: {get_link(i)}' for i in links if i.get('id') in ids])
+    return articles
