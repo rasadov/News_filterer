@@ -30,5 +30,12 @@ def hacker_news_page():
             minimum = form.minimum.data
             maximum = form.maximum.data
             return search(minimum, maximum)
-        else: return search(0,100000)
+        else:
+            if not form.minimum.data:
+                minimum = 0
+            else: minimum = form.minimum.data
+            if not form.maximum.data:
+                maximum = 100000
+            else: maximum = form.maximum.data
+            return search(minimum, maximum)
 
