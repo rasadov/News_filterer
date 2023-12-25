@@ -44,5 +44,5 @@ def get_news(min_points, max_points):
                 ids[(i.get('id')[6:])] = points(i)
             # selecting articles with points more than 150
 
-        articles += ([f'{i.text} --- has {ids[i.get("id")]} votes: {get_link(i)}' for i in links if i.get('id') in ids])
+        articles += ([[f'{i.text}', f'{ids[i.get("id")]} votes', get_link(i)] for i in links if i.get('id') in ids])
     return articles

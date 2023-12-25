@@ -16,25 +16,19 @@ class SearchForm(FlaskForm):
 def main_page():
     return render_template('index.html')
 
-@app.route('/search', methods=['POST'])
-def search():
-    form = SearchForm()
-    if form.validate_on_submit():
-        minimum = form.minimum.data
-        maximum = form.maximum.data
-        print(minimum, "------------")
-        return render_template('search.html', form=form, minimum=minimum, maximum=maximum)
-    return render_template('search.html', form=form, minimum=0, maximum=0)
-
+def search(minimum, maximum):
+    items = get_news(minimum, maximum)
+    return render_template("search.html", items=items)
 
 @app.route('/hacker-news', methods=["POST", "GET"])
 def hacker_news_page():
     form = SearchForm()
-    if form.validate_on_submit():
-        minimum = form.minimum.data
-        maximum = form.maximum.data
-        print(minimum, maximum)
-        items = get_news(minimum, maximum)
-        return render_template("search.html", items=items)
-    return render_template('hacker-news.html', form=form)
+    if request.method == "GET":
+        return render_template('hacker-news.html', form=form)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            minimum = form.minimum.data
+            maximum = form.maximum.data
+            return search(minimum, maximum)
+        else: return search(0,100000)
 

@@ -5,10 +5,18 @@
 
 
 {% block content %}
+<div style="text-align: center;">
     <h2>You searhed for articles {% if minimum and maximum %}with more points tham {{minimum}} and less than {{maximum}}{% elif minimum %}with more points than {{minimum}}{% elif maximum %}with less points than {{maximum}} {% endif %}</h2>
-
-    {% for i in items %}
-    <p>{{i}}</p>
-    {% endfor %}
-
+    
+    {% for name, votes, link in items %}
+    <a href="{{link}}" class="source">
+        <section class="source" style="height: auto;">
+            <div style="height: 20px;"></div>
+            <h1 class="source" style="font-size: 20px;">{{name}}</h1>
+            <p class="source">{{votes}}</p>
+            <div style="height: 20px;"></div>
+        </section>
+    </a>
+    {% endfor %}    
+</div>
 {% endblock %}
