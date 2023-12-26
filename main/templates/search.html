@@ -9,24 +9,47 @@
     <h2>You searhed for articles {% if minimum and maximum %}with more points tham {{minimum}} and less than {{maximum}}{% elif minimum %}with more points than {{minimum}}{% elif maximum %}with less points than {{maximum}} {% endif %}</h2>
     
     {% for name, votes, link in items %}
-    <a href="{{link}}" class="source">
-        <section class="source" style="height: auto;">
-            <div style="height: 20px;"></div>
-            <h1 class="source" style="font-size: 20px;">{{name}}</h1>
-            <p class="source">{{votes}}</p>
-            <div style="height: 20px;"></div>
-        </section>
-    </a>
+    <section class="source" style="height: auto; left: auto; right: auto;">
+        <a href="{{link}}" class="source" style="width: 800px;">
+            <div style="width: 800px;">
+                <div style="height: 20px;"></div>
+                <h1 class="source" style="font-size: 20px;">{{name}}</h1>
+                <p class="source">{{votes}}</p>
+                <div style="height: 20px;"></div>
+            </div>
+        </a>
+    </section>
     {% endfor %}    
 </div>
 
-<p style="text-align: center;">
+
+<div class="pagination-container">
+    {% if page > 2 %}
+    <div class="page-link">
+        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=1) }}" style="text-decoration: none; color: white;"><<</a>
+    </div>
+    {% endif %}
     {% if page > 1 %}
-            <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page-1) }}">Previous</a>
+    <div class="page-link">
+        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page-1) }}" style="text-decoration: none; color: white;">
+            {{page - 1}}
+        </a>
+    </div>
     {% endif %}
-    page: {{page}}
+    <div class="current-page">
+        <a>{{page}}</a>
+    </div>
     {% if page < total_pages %}
-            <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page+1) }}">Next</a>
+    <div class="page-link">
+        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page+1) }}" style="text-decoration: none; color: white;">{{page + 1}}</a>
+    </div>
     {% endif %}
-    </p>
+    {% if page < (total_pages - 1) %}
+    <div class="page-link">
+        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=total_pages) }}" style="text-decoration: none; color: white;">>></a>
+        {% endif %}
+    </div>
+    <div style="height: 20px;"></div>
+</div>
+
 {% endblock %}

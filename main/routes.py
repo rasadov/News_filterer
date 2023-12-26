@@ -2,7 +2,6 @@ from main import app
 from flask import render_template, redirect, url_for, request , jsonify
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, SubmitField
-from wtforms.validators import NumberRange
 from main.web_news_scraping import get_news
 
 
@@ -26,7 +25,6 @@ def hacker_news_page():
             minimum = form.minimum.data
             maximum = form.maximum.data
             page = request.args.get('page', 1, type=int)
-            # items = get_news(minimum, maximum)
             return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
         else:
             if not form.minimum.data:
@@ -38,7 +36,6 @@ def hacker_news_page():
             else:
                 maximum = form.maximum.data
             page = request.args.get('page', 1, type=int)
-            # items = get_news(minimum, maximum)
             return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
 
 
