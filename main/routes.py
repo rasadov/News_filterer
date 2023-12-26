@@ -16,6 +16,31 @@ class SearchForm(FlaskForm):
 def main_page():
     return render_template('index.html')
 
+@app.route('/hacker-news', methods=["POST", "GET"])
+def hacker_news_page():
+    form = SearchForm()
+    if request.method == "GET":
+        return render_template('hacker-news.html', form=form)
+    if request.method == "POST":
+        if form.validate_on_submit():
+            minimum = form.minimum.data
+            maximum = form.maximum.data
+            page = request.args.get('page', 1, type=int)
+            # items = get_news(minimum, maximum)
+            return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
+        else:
+            if not form.minimum.data:
+                minimum = 0
+            else:
+                minimum = form.minimum.data
+            if not form.maximum.data:
+                maximum = 100000
+            else:
+                maximum = form.maximum.data
+            page = request.args.get('page', 1, type=int)
+            # items = get_news(minimum, maximum)
+            return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
+
 
 @app.route('/search', methods=["GET"])
 def search():
@@ -33,29 +58,4 @@ def search():
     total_pages = len(items) // 5 + (len(items) % 5 > 0)
 
     return render_template("search.html",minimum=minimum, maximum=maximum, items=paginated_items, page=page, total_pages=total_pages)
-
-@app.route('/hacker-news', methods=["POST", "GET"])
-def hacker_news_page():
-    form = SearchForm()
-    if request.method == "GET":
-        return render_template('hacker-news.html', form=form)
-    if request.method == "POST":
-        if form.validate_on_submit():
-            minimum = form.minimum.data
-            maximum = form.maximum.data
-            page = request.args.get('page', 1, type=int)
-            # return search(minimum, maximum, page)
-            return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
-        else:
-            if not form.minimum.data:
-                minimum = 0
-            else:
-                minimum = form.minimum.data
-            if not form.maximum.data:
-                maximum = 100000
-            else:
-                maximum = form.maximum.data
-            page = request.args.get('page', 1, type=int)
-            return redirect(url_for('search', minimum=minimum, maximum=maximum, page=page))
-
 
