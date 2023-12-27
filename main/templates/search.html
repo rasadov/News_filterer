@@ -22,34 +22,40 @@
     {% endfor %}    
 </div>
 
-
+{% if total_pages > 1 %}
 <div class="pagination-container">
     {% if page > 2 %}
+    <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=1) }}" style="text-decoration: none; color: white;">
     <div class="page-link">
-        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=1) }}" style="text-decoration: none; color: white;"><<</a>
-    </div>
+            <<
+        </div>
+    </a>
     {% endif %}
     {% if page > 1 %}
+    <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page-1) }}" style="text-decoration: none; color: white;">
     <div class="page-link">
-        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page-1) }}" style="text-decoration: none; color: white;">
             {{page - 1}}
-        </a>
-    </div>
+        </div>
+    </a>
     {% endif %}
     <div class="current-page">
         <a>{{page}}</a>
     </div>
     {% if page < total_pages %}
+    <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page+1) }}" style="text-decoration: none; color: white;">
     <div class="page-link">
-        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=page+1) }}" style="text-decoration: none; color: white;">{{page + 1}}</a>
-    </div>
+            {{page + 1}}
+        </div>
+    </a>
     {% endif %}
     {% if page < (total_pages - 1) %}
+    <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=total_pages) }}" style="text-decoration: none; color: white;">
     <div class="page-link">
-        <a href="{{ url_for('search', minimum=minimum, maximum=maximum, page=total_pages) }}" style="text-decoration: none; color: white;">>></a>
-        {% endif %}
-    </div>
+            >>
+        </div>
+    </a>
+    {% endif %}
     <div style="height: 20px;"></div>
 </div>
-
+{% endif %}
 {% endblock %}
