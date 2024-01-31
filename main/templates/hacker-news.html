@@ -9,18 +9,17 @@
     <h1>All articles are gathered from <a href="https://news.ycombinator.com/?p=" style="color: rgb(0, 110, 255); text-decoration: none;">Hacker News</a></h1>
     <form method="POST">
         {{ form.hidden_tag() }}
-        <div style="height: 20px;"></div>
-        <div>
-            <label for="minimum" style="font-size: 30px; ">Minimum points:</label>
-            <br>
-            <input type="number" class="filter-input" id="minimum" name="minimum" placeholder="Minimum">
+        <div class="search-form">
+            <div style="height: 40px;"></div>
+            <div>
+                <label for="minimum" style="font-size: 30px; ">Filter by points:</label>
+                <br>
+                <input type="number" class="filter-input" id="minimum" name="minimum" placeholder="Minimum">
+                <input type="number" id="maximum" class="filter-input" name="maximum" placeholder="Maximum">
+            </div>
+            <button type="submit" style="color:white; width: 260px; height: 40px; background: rgb(0, 200, 255); margin-top: 20px; border: 0; border-radius: 30px; font-size: 20px;">Search</button>
+            <div style="height: 40px;"></div>
         </div>
-        <div>
-            <label for="maximum" style="font-size: 30px; ">Maximum points:</label>
-            <br>
-            <input type="number" id="maximum" class="filter-input" name="maximum" placeholder="Maximum">
-        </div>
-            <button type="submit" style="width: 220px; height: 30px; background: rgb(127, 255, 138); margin-top: 20px;">Search</button>
     </form>
 </div>
 

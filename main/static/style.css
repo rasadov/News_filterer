@@ -38,6 +38,7 @@ section.source {
     margin: 10px auto 10px auto;
     width: 800px;
     height: 200px;
+    border-radius: 35px;
 }
 
 div.source {
@@ -77,8 +78,10 @@ p.source {
 
 .filter-input {
     margin: 20px auto 20px auto;
-    width: 200px;
+    width: 220px;
     height: 30px;
+    border-radius: 30px;
+    padding: 6px 20px;
 }
 
 div.page-link {
@@ -124,4 +127,12 @@ div.current-page {
     background: rgb(0, 166, 255);
     margin: 0 5px;
     padding-bottom: 12px;
+}
+
+div.search-form {
+    background-color: #434343;
+    width: 400px;
+    height: 120%;
+    margin: 10px auto;
+    border-radius: 20px;
 }
